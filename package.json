@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/wp81mm/accountManager/issues"
   },
-  "homepage": "https://github.com/wp81mm/accountManager#readme"
+  "homepage": "https://github.com/wp81mm/accountManager#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5"
+  }
 }
