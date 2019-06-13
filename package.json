@@ -1,0 +1,19 @@
+{
+  "name": "accountmanager",
+  "version": "1.0.0",
+  "description": "Account Management Software on gitHub",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wp81mm/accountManager.git"
+  },
+  "author": "DongWoo Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wp81mm/accountManager/issues"
+  },
+  "homepage": "https://github.com/wp81mm/accountManager#readme"
+}
