@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:server": "nodemon --exec babel-node src/script/server",
-    "start": "babel-node src/script/server"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "nodemon": "^1.19.1"
   },
   "engines": {
-    "node": "10.x"
+    "node": "10.x",
+    "npm": "6.x"
   }
 }
