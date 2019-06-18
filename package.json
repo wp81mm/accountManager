@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:script": "babel src/script -d static -w",
     "dev:server": "nodemon --exec babel-node src/script/server",
     "start": "node app.js"
   },
@@ -28,6 +29,8 @@
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
     "nodemon": "^1.19.1"
   },
   "engines": {
