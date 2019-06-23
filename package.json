@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:script": "babel src/script -d static -w",
+    "dev:script": "babel src/js -d dist -w",
     "dev:server": "nodemon --exec babel-node src/script/server",
-    "start": "node app.js"
+    "start": "node dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -29,8 +29,11 @@
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "babel-register": "^6.26.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^3.0.2",
     "nodemon": "^1.19.1"
   },
   "engines": {
