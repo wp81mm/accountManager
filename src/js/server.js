@@ -8,7 +8,7 @@ app.set(`view engine`, "pug");
 app.set(`views`, "./src/views");
 
 // app.get("/", (req, res) => res.render("home"));
-app.get("/", (req, res) => res.send("Hello World"));
+app.get("/", (req, res) => res.send("Connected with Github!!!"));
 
 const handleListening = () =>
   console.log(`✅Listening on: http://localhost:${PORT}`);
