@@ -12,7 +12,7 @@ app.set("view engine", "pug");
 app.set("views", "./src/views"); // app.get("/", (req, res) => res.render("home"));
 
 app.get("/", function (req, res) {
-  return res.send("Connected with Github!!!");
+  return res.render("home");
 });
 
 var handleListening = function handleListening() {
