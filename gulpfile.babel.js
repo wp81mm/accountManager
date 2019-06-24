@@ -7,7 +7,26 @@ import uglify from "gulp-uglify";
 // 여러파일을 하나의 파일로 합친다.
 import concat from "gulp-concat";
 // import babelRegister from "babel-register";
+import browserify from "gulp-browserify";
+import babelify from "babelify";
 
+/*
+const transfpile = cb => {
+  gulp
+    .src("src/js/server.js")
+    .pipe(
+      browserify({
+        transform: [
+          babelify.configure({
+            presets: ["@babel/preset-env"]
+          })
+        ]
+      })
+    )
+    .pipe(gulp.dest("dist"));
+  cb();
+};
+*/
 const transfpile = cb => {
   gulp
     .src("src/js/*.js")
@@ -23,4 +42,4 @@ const hello = cb => {
 };
 
 exports.trs = transfpile;
-exports.default = gulp.series(transfpile, hello);
+exports.default = gulp.series(transfpile);

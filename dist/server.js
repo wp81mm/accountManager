@@ -2,7 +2,7 @@
 
 var _express = _interopRequireDefault(require("express"));
 
-var _serverx = _interopRequireDefault(require("./serverx"));
+var _serverx = require("./serverx");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
