@@ -1,45 +1,43 @@
-`use strict`;
 // gulpfile에서 ES6의 문법을 사용하기 위해선 파일 이름을 "gulpfile.babel.js"로 설정해야 한다..
 import gulp from "gulp";
-import babel from "gulp-babel"; //
-// 서버가 스크립트를 더욱 빠르게 읽고 실행할 수 있도록 코드를 최적화 한다. .pipe(uglify())
 import uglify from "gulp-uglify";
-// 여러파일을 하나의 파일로 합친다.
-import concat from "gulp-concat";
-// import babelRegister from "babel-register";
-import browserify from "gulp-browserify";
+import del from "del";
+import browserify from "browserify";
 import babelify from "babelify";
+import sourceStream from "vinyl-source-stream";
+import buffer from "vinyl-buffer";
 
-/*
-const transfpile = cb => {
-  gulp
-    .src("src/js/server.js")
-    .pipe(
-      browserify({
-        transform: [
-          babelify.configure({
-            presets: ["@babel/preset-env"]
-          })
-        ]
-      })
-    )
+const delfile = done => {
+  const deletedPaths = del(["dist/*.js"]);
+  // console.log(deletedPaths);
+  done();
+};
+// 요거는 나중에 프론트앤드 파일 합칠때 사용하면 됩니다. ㅋ
+const bundlejs = done => {
+  const bundler = browserify({
+    entries: "./src/js/server.js",
+    debug: true, // set true to use source maps
+    node: true
+  });
+  bundler
+    .transform(babelify.configure({ presets: ["@babel/preset-env"] }))
+    .bundle()
+    .pipe(sourceStream("server.js"))
+    .pipe(buffer())
     .pipe(gulp.dest("dist"));
-  cb();
-};
-*/
-const transfpile = cb => {
-  gulp
-    .src("src/js/*.js")
-    .pipe(babel())
-    .pipe(gulp.dest("dist"));
-  cb();
+  done();
 };
 
-const hello = cb => {
-  console.log("Hello gulp");
-  console.log(cb.toString());
-  cb();
+const transpileJsServer = done => {
+  const transfpile = cb => {
+    gulp
+      .src("src/js/*.js")
+      .pipe(babel())
+      .pipe(gulp.dest("dist"));
+    cb();
+  };
+  done();
 };
 
-exports.trs = transfpile;
-exports.default = gulp.series(transfpile);
+exports.bundlejs = gulp.series(delfile, bundlejs);
+exports.transfpileServer = gulp.series(delfile, transpileJsServer);

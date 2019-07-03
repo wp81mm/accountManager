@@ -2,12 +2,13 @@
   "name": "accountmanager",
   "version": "1.0.0",
   "description": "Account Management Software on gitHub",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:script": "babel src/js -d dist -w",
-    "dev:server": "nodemon --exec babel-node src/script/server",
-    "start": "node dist/server.js"
+    "dev": "nodemon --exec babel-node app",
+    "devx": "node dist/server.js",
+    "start": "babel-node app"
   },
   "repository": {
     "type": "git",
@@ -20,18 +21,23 @@
   },
   "homepage": "https://github.com/wp81mm/accountManager#readme",
   "dependencies": {
-    "@babel/polyfill": "^7.4.4",
-    "babelify": "^10.0.0",
+    "del": "^4.1.1",
     "express": "^4.17.1",
     "gulp-browserify": "^0.5.1",
-    "pug": "^2.0.3"
+    "pug": "^2.0.4",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
+    "@babel/plugin-transform-async-to-generator": "^7.4.4",
+    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
+    "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
+    "babelify": "^10.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",

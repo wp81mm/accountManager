@@ -1,6 +1,8 @@
 import express from "express";
 import { myfunction } from "./serverx";
 
+const babo = 1;
+
 const app = express();
 const PORT = process.env.PORT || 4000;
 
