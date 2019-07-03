@@ -1,5 +1,6 @@
 // gulpfile에서 ES6의 문법을 사용하기 위해선 파일 이름을 "gulpfile.babel.js"로 설정해야 한다..
 import gulp from "gulp";
+import babel from "gulp-babel";
 import uglify from "gulp-uglify";
 import del from "del";
 import browserify from "browserify";
@@ -29,15 +30,12 @@ const bundlejs = done => {
 };
 
 const transpileJsServer = done => {
-  const transfpile = cb => {
-    gulp
-      .src("src/js/*.js")
-      .pipe(babel())
-      .pipe(gulp.dest("dist"));
-    cb();
-  };
+  gulp
+    .src("src/js/*.js")
+    .pipe(babel())
+    .pipe(gulp.dest("dist"));
   done();
 };
 
 exports.bundlejs = gulp.series(delfile, bundlejs);
-exports.transfpileServer = gulp.series(delfile, transpileJsServer);
+exports.buildServer = gulp.series(delfile, transpileJsServer);

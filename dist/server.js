@@ -6,6 +6,7 @@ var _serverx = require("./serverx");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+var babo = 1;
 var app = (0, _express["default"])();
 var PORT = process.env.PORT || 4000;
 app.set("view engine", "pug");

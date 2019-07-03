@@ -5,10 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:script": "babel src/js -d dist -w",
+    "buliddev": "babel src/js -d dist -w",
     "dev": "nodemon --exec babel-node app",
-    "devx": "node dist/server.js",
-    "start": "babel-node app"
+    "start": "node dist/server.js"
   },
   "repository": {
     "type": "git",
