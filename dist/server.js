@@ -12,9 +12,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var app = (0, _express["default"])();
 var PORT = process.env.PORT || 4000;
-app.use("/js", _express["default"]["static"](_path["default"].join(__dirname, "dist/public/js"))); //프론트 엔드 자바 스크립트 파일을 합쳐서 dist/public/js에 넣어주면 된다.
+app.use("/js", _express["default"]["static"]("./dist/public/js")); //프론트 엔드 자바 스크립트 파일을 합쳐서 dist/public/js에 넣어주면 된다.
 
-app.use("/css", _express["default"]["static"](_path["default"].join(__dirname, "dist/public/css"))); //css파일을 합쳐서 dist/public/css에 넣어주면 된다.
+app.use("/css", _express["default"]["static"]("./dist/public/css")); //css파일을 합쳐서 dist/public/css에 넣어주면 된다.
 
 app.set("view engine", "pug");
 app.set("views", "./src/views");
