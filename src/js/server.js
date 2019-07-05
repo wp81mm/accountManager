@@ -11,6 +11,7 @@ app.use("/css", express.static(`./dist/public/css`)); //css파일을 합쳐서 d
 app.set(`view engine`, "pug");
 app.set(`views`, "./src/views");
 
+// Express.Router
 app.use(routes.home, globalRouter);
 
 const handleListening = () =>
