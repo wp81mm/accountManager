@@ -1,7 +1,6 @@
 import express from "express";
-import { myfunction } from "./serverx";
-
-const babo = 1;
+import routes from "./routes";
+import globalRouter from "./routers/globalRouter";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -9,8 +8,7 @@ const PORT = process.env.PORT || 4000;
 app.set(`view engine`, "pug");
 app.set(`views`, "./src/views");
 
-// app.get("/", (req, res) => res.render("home"));
-app.get("/", (req, res) => res.render("home"));
+app.use(routes.home, globalRouter);
 
 const handleListening = () =>
   console.log(`✅Listening on: http://localhost:${PORT}`);
