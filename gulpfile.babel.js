@@ -32,7 +32,6 @@ const transpileJs = done => {
   gulp
     .src("src/js/**/*.js") //js 폴더내의 모든 폴더와 모든 파일에 대해서 실행
     .pipe(babel())
-    .pipe(uglify())
     .pipe(gulp.dest("dist"));
   done();
 };
