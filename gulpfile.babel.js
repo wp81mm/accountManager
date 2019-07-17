@@ -2,23 +2,39 @@
 import gulp from "gulp";
 import sass from "gulp-sass";
 import autoprefixer from "gulp-autoprefixer";
-import cleanCss from "gulp-clean-css";
 import babel from "gulp-babel";
 import uglify from "gulp-uglify";
 import del from "del";
-import browserify from "browserify";
+// import browserify from "browserify";
 import babelify from "babelify";
 import sourceStream from "vinyl-source-stream";
 import buffer from "vinyl-buffer";
 
 sass.compiler = require("node-sass");
 
-const deletefile = done => {
-  const deletedPaths = del(["dist/*.js"]);
+//Js 파일이 변경되면 Js 파일만 지우고 다시 빌드
+// SCSS파일이 변경되면 SCSS 파일만 지우고 다시 빌드
+
+const path = {
+  jsBackend: {
+    watch: "./assets/jsback/**/*.js",
+    src: "./assets/jsback/**/*.js",
+    dest: "./build/jsback"
+  },
+  styles: {
+    watch: "./assets/scss/*.scss",
+    src: "./assets/scss/styles.scss",
+    dest: "./build/public/css"
+  }
+};
+
+const deljsFront = done => {
+  const deletedPaths = del(["/*.js"]);
   done();
 };
-// 요거는 나중에 프론트앤드 파일 합칠때 사용하면 됩니다. ㅋ
-const bundlejs = done => {
+
+/*
+const jsFront = done => {
   const bundler = browserify({
     entries: "./src/js/server.js", // 나중에는 main.js로 설정한다.
     debug: true, // set true to use source maps
@@ -32,32 +48,48 @@ const bundlejs = done => {
     .pipe(gulp.dest("dist/public/js"));
   done();
 };
+*/
 
-const js = done => {
+const deljsBackend = done => {
+  del([path.jsBackend.dest]);
+  console.log(`jsBackEnd was deleted!!`);
+  done();
+};
+
+const jsBackend = done => {
   gulp
-    .src("src/js/**/*.js") //js 폴더내의 모든 폴더와 모든 파일에 대해서 실행
+    .src(path.jsBackend.src) //js 폴더내의 모든 폴더와 모든 파일에 대해서 실행
     .pipe(babel())
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest(path.jsBackend.dest));
+  done();
+};
+
+const delcss = done => {
+  del([path.styles.dest]);
+  console.log(`style was deleted!!`);
   done();
 };
 
 const css = done => {
   gulp
-    .src("src/scss/styles.scss")
+    .src(path.styles.src)
     .pipe(sass().on("error", sass.logError))
     .pipe(
       autoprefixer({
         cascade: false
+        // more options are in package.json
       })
     )
-    .pipe(gulp.dest("dist/public/css"));
+    .pipe(gulp.dest(path.styles.dest));
   done();
 };
+
+export const style = gulp.series(delcss, css);
 
 const watch = done => {
-  gulp.watch("src/js/**/*.js", gulp.series(deletefile, js, css));
+  // gulp.watch("src/js/**/*.js", gulp.series(deletefile, jsBackend, style));
+  gulp.watch("src/scss/**/*.scss", style);
   done();
 };
 
-exports.bundlejs = gulp.series(deletefile, bundlejs);
-export const build = gulp.series(deletefile, js, css, watch);
+export const build = gulp.series(jsBackend, style, watch);

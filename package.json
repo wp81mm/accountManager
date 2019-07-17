@@ -20,31 +20,30 @@
   },
   "homepage": "https://github.com/wp81mm/accountManager#readme",
   "dependencies": {
-    "del": "^4.1.1",
     "express": "^4.17.1",
-    "gulp-browserify": "^0.5.1",
-    "pug": "^2.0.4",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
+    "mixin-deep": "^2.0.1",
+    "pug": "^2.0.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
-    "@babel/plugin-transform-async-to-generator": "^7.4.4",
+    "@babel/plugin-transform-async-to-generator": "^7.5.0",
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "babelify": "^10.0.0",
+    "del": "^4.1.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",
     "gulp-babel": "^8.0.0",
-    "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^3.0.2",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
   },
   "engines": {
     "node": "10.x",

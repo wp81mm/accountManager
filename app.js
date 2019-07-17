@@ -1,1 +1,1 @@
-import server from "./src/js/server";
+import server from "./assets/jsback/server";

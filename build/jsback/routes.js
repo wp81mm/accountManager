@@ -8,8 +8,7 @@ exports.default = void 0;
 var HOME = "/";
 var JOIN = "/join";
 var LOGIN = "/login";
-var LOGOUT = "/logout";
-var SEARCH = "/search"; // Users
+var LOGOUT = "/logout"; // Users
 
 var USERS = "/users";
 var EDIT_PROFILE = "/edit-profile";
@@ -34,7 +33,6 @@ var routes = {
   join: JOIN,
   login: LOGIN,
   logout: LOGOUT,
-  search: SEARCH,
   users: USERS,
   userDetail: function userDetail(id) {
     if (id) {
