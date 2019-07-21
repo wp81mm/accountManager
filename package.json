@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildtest": "node build/jsback/server.js",
-    "dev": "nodemon --exec babel-node app.js ",
+    "build": "gulp build",
+    "startdev": "nodemon --exec babel-node app.js ",
     "start": "node build/jsback/server.js"
   },
   "nodemonConfig": {

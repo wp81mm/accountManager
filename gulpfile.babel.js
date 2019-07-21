@@ -46,7 +46,6 @@ const jsFront = done => {
 
 export const deljsBackend = done => {
   del(path.jsBackend.del);
-  console.log(`js files for backend were deleted!!`);
   done();
 };
 
@@ -60,7 +59,6 @@ const jsBackend = done => {
 
 const delcss = done => {
   del(path.styles.del);
-  console.log(`style files were deleted!!`);
   done();
 };
 
@@ -79,17 +77,11 @@ const css = done => {
 };
 
 const watch = done => {
-  gulp.watch(path.jsBackend.watch, gulp.series(deljsBackend, jsBackend));
   gulp.watch(path.styles.watch, gulp.series(delcss, css));
   done();
 };
 
-export const dev = gulp.series(
-  gulp.parallel(delcss, deljsBackend),
-  css,
-  jsBackend,
-  watch
-);
+export const dev = gulp.series(delcss, css, watch);
 
 export const build = gulp.series(
   gulp.parallel(delcss, deljsBackend),
