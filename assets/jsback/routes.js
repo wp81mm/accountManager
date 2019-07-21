@@ -8,8 +8,8 @@ const LOGOUT = "/logout";
 const USERS = "/users";
 const EDIT_PROFILE = "/edit-profile";
 const USER_DETAIL = "/:id"; // 익스프레스는 ":id"를 파라매터(매개변수)로 인식..
-const CHANGE_PASSWORD = "/change-password";
-const ME = "/me";
+const CHANGE_PASSWORD = "/change-password"; //dlrj anjdi
+const ME = "/him";
 
 //Members
 

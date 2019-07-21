@@ -5,7 +5,7 @@ import autoprefixer from "gulp-autoprefixer";
 import babel from "gulp-babel";
 import uglify from "gulp-uglify";
 import del from "del";
-// import browserify from "browserify";
+// import bro from "gulp-bro"; 나중에 프론트 엔드 코드를 작성하면 gulp-bro로 합친다.
 import babelify from "babelify";
 import sourceStream from "vinyl-source-stream";
 import buffer from "vinyl-buffer";
@@ -16,15 +16,22 @@ sass.compiler = require("node-sass");
 // SCSS파일이 변경되면 SCSS 파일만 지우고 다시 빌드
 
 const path = {
+  jsForntend: {
+    watch: "./assets/jsfront/**/*.js",
+    src: "./assets/jsfront/**/*.js",
+    dest: "./build/public/js"
+  },
   jsBackend: {
     watch: "./assets/jsback/**/*.js",
     src: "./assets/jsback/**/*.js",
-    dest: "./build/jsback"
+    dest: "./build/jsback",
+    del: [`./build/jsback/**`, `!./build/jsback`]
   },
   styles: {
     watch: "./assets/scss/*.scss",
     src: "./assets/scss/styles.scss",
-    dest: "./build/public/css"
+    dest: "./build/public/css",
+    del: [`./build/public/css/**`, `./build/public/css`]
   }
 };
 
@@ -33,26 +40,13 @@ const deljsFront = done => {
   done();
 };
 
-/*
 const jsFront = done => {
-  const bundler = browserify({
-    entries: "./src/js/server.js", // 나중에는 main.js로 설정한다.
-    debug: true, // set true to use source maps
-    node: true
-  });
-  bundler
-    .transform(babelify.configure({ presets: ["@babel/preset-env"] }))
-    .bundle()
-    .pipe(sourceStream("main.js"))
-    .pipe(buffer())
-    .pipe(gulp.dest("dist/public/js"));
   done();
 };
-*/
 
-const deljsBackend = done => {
-  del([path.jsBackend.dest]);
-  console.log(`jsBackEnd was deleted!!`);
+export const deljsBackend = done => {
+  del(path.jsBackend.del);
+  console.log(`js files for backend were deleted!!`);
   done();
 };
 
@@ -65,8 +59,8 @@ const jsBackend = done => {
 };
 
 const delcss = done => {
-  del([path.styles.dest]);
-  console.log(`style was deleted!!`);
+  del(path.styles.del);
+  console.log(`style files were deleted!!`);
   done();
 };
 
@@ -84,12 +78,21 @@ const css = done => {
   done();
 };
 
-export const style = gulp.series(delcss, css);
-
 const watch = done => {
-  // gulp.watch("src/js/**/*.js", gulp.series(deletefile, jsBackend, style));
-  gulp.watch("src/scss/**/*.scss", style);
+  gulp.watch(path.jsBackend.watch, gulp.series(deljsBackend, jsBackend));
+  gulp.watch(path.styles.watch, gulp.series(delcss, css));
   done();
 };
 
-export const build = gulp.series(jsBackend, style, watch);
+export const dev = gulp.series(
+  gulp.parallel(delcss, deljsBackend),
+  css,
+  jsBackend,
+  watch
+);
+
+export const build = gulp.series(
+  gulp.parallel(delcss, deljsBackend),
+  css,
+  jsBackend
+);

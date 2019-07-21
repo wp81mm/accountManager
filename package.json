@@ -5,9 +5,15 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buliddev": "babel src/js -d dist -w",
-    "dev": "nodemon --exec babel-node app",
-    "start": "node dist/server.js"
+    "buildtest": "node build/jsback/server.js",
+    "dev": "nodemon --exec babel-node app.js ",
+    "start": "node build/jsback/server.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "assets/**"
+    ],
+    "delay": "2000"
   },
   "repository": {
     "type": "git",

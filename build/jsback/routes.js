@@ -14,8 +14,9 @@ var USERS = "/users";
 var EDIT_PROFILE = "/edit-profile";
 var USER_DETAIL = "/:id"; // 익스프레스는 ":id"를 파라매터(매개변수)로 인식..
 
-var CHANGE_PASSWORD = "/change-password";
-var ME = "/me"; //Members
+var CHANGE_PASSWORD = "/change-password"; //dlrj anjdi
+
+var ME = "/him"; //Members
 // Videos
 
 var VIDEOS = "/videos";
